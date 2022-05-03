@@ -53,4 +53,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
+# env | grep PAYJPコマンドを使用すると今まで使用してきたPAYJPの各キーの確認ができる
 gem 'payjp'

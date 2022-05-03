@@ -4,5 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :card, dependent: :destroy
+  has_one :card, dependent: :destroy # dependent: :destroyは親モデルが削除されたときにそれに紐づいている子モデルも同時に削除できる
 end

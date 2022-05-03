@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
     redirect_to new_card_path and return unless current_user.card.present?
 
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    customer_token = current_user.card.customer_token
+    customer_token = current_user.card.customer_token #ログインしているユーザーの顧客トークンを定義
     Payjp::Charge.create(
       amount: @item.price,
       customer: customer_token,

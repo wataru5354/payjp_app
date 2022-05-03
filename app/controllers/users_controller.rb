@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   def show
+    # 環境変数を読み込み、ユーザーid情報をもとにカード情報を取得
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     card = Card.find_by(user_id:current_user.id)
 
     reidrect_to new_card_path and return unless card.present?
 
+    # カード情報から顧客情報を取得
     customer = Payjp::Customer.retrieve(card.customer_token)
-    @card = customer.cards.first
+    @card = customer.cards.first # firstとはユーザーがクレジットカードを複数登録している場合、最初に登録したカード情報を取得できる
   end
 
   def update

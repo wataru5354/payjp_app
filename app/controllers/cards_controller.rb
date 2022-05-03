@@ -4,13 +4,14 @@ class CardsController < ApplicationController
 
   def create
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    # Customerオブジェクトを使用する
     customer = Payjp::Customer.create(
-      description: 'test',
-      card: params[:card_token]
+      description: 'test', #テストカード
+      card: params[:card_token] #登録するカード情報
     )
     card = Card.new(
       card_token: params[:card_token],
-      customer_token: customer.id,
+      customer_token: customer.id, #顧客トークン
       user_id: current_user.id
     )
     if card.save
